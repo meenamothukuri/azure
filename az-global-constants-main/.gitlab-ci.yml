@@ -1,0 +1,8 @@
+include:
+  - project: 'registries/ci-cd-pipelines/terraform-module'
+    ref: 1.0.0
+    file: 'pipeline.yml'
+##
+.terraform-module-publish:
+    variables:
+        TERRAFORM_MODULE_SYSTEM: azure
