@@ -1,0 +1,9 @@
+include:
+  - project: 'registries/ci-cd-pipelines/terraform-module'
+    ref: 1.1.0
+    file: 'pipeline.yml'
+
+variables:
+    CHECKOV_SKIP_CHECK: "CKV_AZURE_116,CKV_AZURE_170,CKV_AZURE_172,CKV_AZURE_141,CKV_AZURE_168,CKV_AZURE_168,CKV_AZURE_112,CKV_AZURE_40,CKV_K8S_49"
+
+
