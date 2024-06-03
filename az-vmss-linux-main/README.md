@@ -1,0 +1,65 @@
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
+| <a name="requirement_azuread"></a> [azuread](#requirement\_azuread) | ~> 2.29 |
+| <a name="requirement_azurecaf"></a> [azurecaf](#requirement\_azurecaf) | 1.2.23 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~>3.28 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.0 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_azurecaf"></a> [azurecaf](#provider\_azurecaf) | 1.2.23 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | ~>3.28 |
+| <a name="provider_random"></a> [random](#provider\_random) | ~> 3.0 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [azurecaf_name.azurerm_linux_virtual_machine_scale_set](https://registry.terraform.io/providers/aztfmod/azurecaf/1.2.23/docs/resources/name) | resource |
+| [azurecaf_name.azurerm_monitor_autoscale_setting](https://registry.terraform.io/providers/aztfmod/azurecaf/1.2.23/docs/resources/name) | resource |
+| [azurerm_linux_virtual_machine_scale_set.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine_scale_set) | resource |
+| [azurerm_monitor_autoscale_setting.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_autoscale_setting) | resource |
+| [random_password.this](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
+| [azurerm_resource_group.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group) | data source |
+| [azurerm_subnet.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subnet) | data source |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_auto_start"></a> [auto\_start](#input\_auto\_start) | Startor shutdown the VMSS at specific time | <pre>object({<br>    timezone = string<br>    days     = list(string)<br>    hours    = list(number)<br>    minutes  = list(number)<br>  })</pre> | `null` | no |
+| <a name="input_auto_stop"></a> [auto\_stop](#input\_auto\_stop) | Shutdown the VMSS at specific time | <pre>object({<br>    timezone = string<br>    days     = list(string)<br>    hours    = list(number)<br>    minutes  = list(number)<br>  })</pre> | `null` | no |
+| <a name="input_global_hyperscaler"></a> [global\_hyperscaler](#input\_global\_hyperscaler) | Kennzeichen für den Hyperscaler | `string` | n/a | yes |
+| <a name="input_global_hyperscaler_location"></a> [global\_hyperscaler\_location](#input\_global\_hyperscaler\_location) | Kennzeichen für den Hyperscaler Region | `string` | n/a | yes |
+| <a name="input_global_stage"></a> [global\_stage](#input\_global\_stage) | Staging Umgebung | `string` | n/a | yes |
+| <a name="input_global_subscription_id"></a> [global\_subscription\_id](#input\_global\_subscription\_id) | n/a | `string` | `""` | no |
+| <a name="input_license_type"></a> [license\_type](#input\_license\_type) | Must be either RHEL\_BYOS, SLES\_BYOS, none | `string` | `"none"` | no |
+| <a name="input_materna_cost_center"></a> [materna\_cost\_center](#input\_materna\_cost\_center) | Materna cost center | `string` | n/a | yes |
+| <a name="input_materna_customer_name"></a> [materna\_customer\_name](#input\_materna\_customer\_name) | Name of the customer (max. 5 characters). | `string` | n/a | yes |
+| <a name="input_materna_project_number"></a> [materna\_project\_number](#input\_materna\_project\_number) | Materna internal project nummer | `string` | n/a | yes |
+| <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | Resource group für die vmss | `string` | n/a | yes |
+| <a name="input_subnet"></a> [subnet](#input\_subnet) | Subnet parameters | <pre>object({<br>    name                        = string<br>    network_name                = string<br>    network_resource_group_name = string<br>  })</pre> | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tags for the deployment | `map(any)` | n/a | yes |
+| <a name="input_vmss_admin_password"></a> [vmss\_admin\_password](#input\_vmss\_admin\_password) | password für die vm | `string` | `null` | no |
+| <a name="input_vmss_admin_username"></a> [vmss\_admin\_username](#input\_vmss\_admin\_username) | username für die vm | `string` | `"matadmin"` | no |
+| <a name="input_vmss_id"></a> [vmss\_id](#input\_vmss\_id) | Die Instanz-ID für die Virtuelle Maschine | `number` | `1` | no |
+| <a name="input_vmss_instances"></a> [vmss\_instances](#input\_vmss\_instances) | the number of instances | `number` | `1` | no |
+| <a name="input_vmss_os_disk"></a> [vmss\_os\_disk](#input\_vmss\_os\_disk) | OS-Disk parameters | <pre>object({<br>    caching              = string<br>    storage_account_type = string<br>    disk_size_gb         = string<br>  })</pre> | <pre>{<br>  "caching": "ReadWrite",<br>  "disk_size_gb": null,<br>  "storage_account_type": "Standard_LRS"<br>}</pre> | no |
+| <a name="input_vmss_size"></a> [vmss\_size](#input\_vmss\_size) | SKU, die für diese virtuelle Maschine verwendet werden soll | `string` | `"Standard_B1S"` | no |
+| <a name="input_vmss_source_image_id"></a> [vmss\_source\_image\_id](#input\_vmss\_source\_image\_id) | Custom VM Image ID in Azure | `any` | `null` | no |
+| <a name="input_vmss_source_image_reference"></a> [vmss\_source\_image\_reference](#input\_vmss\_source\_image\_reference) | Vm-Image Eigenschaften | <pre>object({<br>    publisher = string<br>    offer     = string<br>    sku       = string<br>    version   = string<br>  })</pre> | `null` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| <a name="output_vmss_object"></a> [vmss\_object](#output\_vmss\_object) | n/a |
